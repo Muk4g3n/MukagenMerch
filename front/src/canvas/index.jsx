@@ -18,7 +18,7 @@ const CanvasModel = ({
       shadows
       camera={{ position: [0, 0, 0], fov: 25 }}
       gl={{ preserveDrawingBuffer: true }}
-      className={`absolute w-full max-w-full h-full transition-all ease-in 
+      className={`absolute w-full max-w-full h-full transition-all ease-in -z-10
       ${dark ? "bg-gradient-dark" : "bg-gradient"}`}
     >
       <ambientLight intensity={0.6} />

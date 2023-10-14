@@ -1,10 +1,11 @@
-import React, { lazy } from "react";
+import React from "react";
 import { useDelProductMutation } from "../app/endpoints/productEndpoints";
 import { toast } from "react-toastify";
-const CanvasModel = lazy(() => import("../canvas"));
+import { useColor } from "../hooks";
 
 const Card = ({ name, id, handleProdDel, color }) => {
   const [delProduct, { isloading, error }] = useDelProductMutation();
+  const { setColor } = useColor();
 
   const del = () => {
     delProduct({ productid: id })
@@ -16,24 +17,27 @@ const Card = ({ name, id, handleProdDel, color }) => {
       .catch((err) => toast.error(err.data.message));
   };
 
+  const viewHandle = () => {
+    setColor(color);
+  };
+
   return (
-    <div className="bg-white w-[15rem] h-[20rem] rounded-lg shadow-lg p-4 flex flex-col gap-7">
-      {/* <img
-        src="vite.svg"
-        alt="Card Image"
-        className="w-32 h-32 object-cover object-center rounded-t-lg self-center"
-      /> */}
-      <CanvasModel defaultColor={color} />
-      <div className="p-4">
-        <h2 className="text-2xl font-bold mb-2">{name}</h2>
-        <p className="text-gray-700 mb-2">$99.99</p>
+    <div className="bg-white w-[15rem] h-[6rem] rounded-lg shadow-lg flex flex-col gap-1 mr-3 p-4">
+      <div className="  w-full flex justify-between items-center">
+        <h2 className=" text-xl font-bold mb-2">{name}</h2>
+        <button onClick={del}>
+          <img className="w-6 h-6" src="/trash.png" alt="trash" />
+        </button>
+      </div>
+
+      <div className="  w-full flex justify-between items-center">
+        <p className="text-gray-700 mb-2 font-bold">$99.99</p>
 
         <button
-          onClick={del}
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={viewHandle}
+          className=" bg-blue-500 hover:bg-blue-700 text-white py-1 px-2 rounded font-thin"
         >
-          Delete
+          View
         </button>
       </div>
     </div>

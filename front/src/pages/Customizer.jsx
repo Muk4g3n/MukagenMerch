@@ -1,13 +1,31 @@
-import React, { lazy, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import Tab from "../components/Tab";
 import FilePicker from "../components/FilePicker";
 import ColorPicker from "../components/ColorPicker";
 import { EditorTabs } from "../config/constants";
 import ProductForm from "../components/ProductForm";
+import { useCanvas } from "../hooks";
 const CanvasModel = lazy(() => import("../canvas"));
 
 const Customizer = () => {
   const [file, setFile] = useState("");
+
+  const {
+    setDarkOption,
+    setPositionOption,
+    setRotationOption,
+    setEditableOption,
+  } = useCanvas();
+
+  useEffect(() => {
+    setDarkOption(false);
+    setPositionOption([0, 0, -1.5]);
+    setRotationOption([0, 0, 0]);
+    setEditableOption(true);
+    // return () => {
+
+    // }
+  }, []);
 
   const [activeEditorTab, setActiveEditorTab] = useState(null);
   const [activeFilterTab, setFilterTab] = useState("");
@@ -91,7 +109,7 @@ const Customizer = () => {
           <ProductForm />
         </div>
       </div>
-      <CanvasModel editable={true} />
+      {/* <CanvasModel editable={true} /> */}
     </div>
   );
 };

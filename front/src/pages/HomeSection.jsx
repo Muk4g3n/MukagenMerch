@@ -1,10 +1,30 @@
-import React from "react";
-import Card from "../components/Card";
-import CanvasModel from "../canvas";
+import React, { useEffect } from "react";
+// import Card from "../components/Card";
+// import CanvasModel from "../canvas";
+
+import { useCanvas } from "../hooks";
 
 const HomeSection = () => {
+  const {
+    setDarkOption,
+    setPositionOption,
+    setRotationOption,
+    setEditableOption,
+  } = useCanvas();
+
+  useEffect(() => {
+    setDarkOption(true);
+    setEditableOption(false);
+    setPositionOption([0.4, 0, -1.6]);
+    setRotationOption([0, -0.5, 0]);
+
+    // return () => {
+
+    // }
+  }, []);
+
   return (
-    <div className="w-[100%] h-[90vh] flex flex-col items-center gap-10 overflow-x-hidden relative bg-red-500">
+    <div className="w-[100%] h-[90vh] flex flex-col items-center gap-10 overflow-x-hidden relative">
       {/* <div className="w-full h-[10%] mt-4 flex items-center">
         <div className="w-[45%] h-[2px] rounded-full bg-black"></div>
         <h1 className="text-3xl text-center w-[14%]  font-bold">
@@ -17,11 +37,11 @@ const HomeSection = () => {
           <Card />
         ))}
       </div> */}
-      <CanvasModel
+      {/* <CanvasModel
         targetPosition={[0.4, 0, -1.6]}
         targetRotation={[0, -0.5, 0]}
         dark={true}
-      />
+      /> */}
       <div className="absolute w-full h-full left-0 flex items-center">
         <div className=" w-1/2 h-2/3 flex flex-col items-center text-white gap-3">
           <h1 className="text-4xl font-bold mt-[6rem] w-2/3">

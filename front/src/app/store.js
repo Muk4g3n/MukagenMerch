@@ -2,13 +2,14 @@ import { useDispatch, useSelector } from "react-redux/";
 import { configureStore } from "@reduxjs/toolkit";
 import { apiSlice } from "./slices/apiSlice";
 
-import { user, color, products } from "./slices";
+import { user, color, products, canvasOptions } from "./slices";
 
 const store = configureStore({
   reducer: {
     user,
     color,
     products,
+    canvasOptions,
     [apiSlice.reducerPath]: apiSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
